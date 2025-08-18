@@ -1,14 +1,20 @@
 package io.book.library.domain.entities;
 
+import io.book.library.domain.enums.BookStatus;
+import io.book.library.domain.enums.UserStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
+@Table(name = "User")
+@Entity
 public class User
 {
     @Id
+    @Column(name="User_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long UserID;
     @Column(name = "User_Name")
@@ -23,21 +29,18 @@ public class User
     @ManyToOne
     @JoinColumn(name = "Book_ID")
     private Book Book;
+    @Enumerated
+    @Column(name = "User_Status")
+    private UserStatus userStatus;
     @CreationTimestamp
     private LocalDateTime createdAt;
+    @OneToOne
+    @JoinColumn(name = "Loan_ID")
+    private List<Loan> loans;
 
     public User()
     {
 
-    }
-
-    public User(Long userID, String userName, String CPF, String userAddress, Book book, LocalDateTime createdAt) {
-        UserID = userID;
-        this.userName = userName;
-        this.CPF = CPF;
-        this.userAddress = userAddress;
-        this.Book = book;
-        this.createdAt = createdAt;
     }
 
     public Long getUserID() {
@@ -87,4 +90,30 @@ public class User
     public void setBook(Book book) {
         Book = book;
     }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public List<Loan> getLoans() {
+        return loans;
+    }
+
+    public void setLoans(List<Loan> loans) {
+        this.loans = loans;
+    }
+
+    public UserStatus getUserStatus() {
+        return userStatus;
+    }
+
+    public void setUserStatus(UserStatus userStatus) {
+        this.userStatus = userStatus;
+    }
 }
+
+

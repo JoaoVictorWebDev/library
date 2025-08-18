@@ -21,18 +21,6 @@ public class Category
     private LocalDateTime createdAt;
     private LocalDateTime updateAt;
 
-    public Category()
-    {
-
-    }
-
-    public Category(Long categoryID, LocalDateTime createdAt, String categoryName, LocalDateTime updateAt) {
-        this.categoryID = categoryID;
-        this.createdAt = createdAt;
-        this.categoryName = categoryName;
-        this.updateAt = updateAt;
-    }
-
     public Long getCategoryID() {
         return categoryID;
     }

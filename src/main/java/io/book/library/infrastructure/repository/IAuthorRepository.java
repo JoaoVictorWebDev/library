@@ -1,4 +1,7 @@
 package io.book.library.infrastructure.repository;
 
-public interface IAuthorRepository {
+import io.book.library.domain.entities.Author;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IAuthorRepository extends JpaRepository<Author, Long> {
 }

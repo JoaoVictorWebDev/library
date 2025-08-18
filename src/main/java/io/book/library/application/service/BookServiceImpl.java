@@ -1,5 +1,6 @@
 package io.book.library.application.service;
 
+import io.book.library.application.service.interfaces.BookService;
 import io.book.library.domain.entities.Book;
 import io.book.library.domain.enums.BookStatus;
 import io.book.library.infrastructure.config.IllegalStateException;
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class BookServiceImpl implements BookService{
+public class BookServiceImpl implements BookService {
 
     @Autowired
     protected IBookRepository repository;

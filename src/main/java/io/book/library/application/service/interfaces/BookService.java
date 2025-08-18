@@ -1,4 +1,4 @@
-package io.book.library.application.service;
+package io.book.library.application.service.interfaces;
 
 import io.book.library.domain.entities.Book;
 

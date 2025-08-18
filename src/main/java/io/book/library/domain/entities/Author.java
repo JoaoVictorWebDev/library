@@ -29,21 +29,6 @@ public class Author
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Author()
-    {
-
-    }
-
-    public Author(Long authorID, String authorName, String biography, String nationality, LocalDate birthDate, String photoUrl, LocalDateTime createdAt) {
-        this.authorID = authorID;
-        this.authorName = authorName;
-        this.biography = biography;
-        this.nationality = nationality;
-        this.birthDate = birthDate;
-        this.photoUrl = photoUrl;
-        this.createdAt = createdAt;
-    }
-
     public Long getAuthorID() {
         return authorID;
     }

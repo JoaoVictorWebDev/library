@@ -35,7 +35,6 @@ public class Loan
     @Column(name = "Return_Date")
     private LocalDate returnDate;
 
-
     @Column(name = "Returned")
     private LocalDate returned;
 
@@ -53,19 +52,6 @@ public class Loan
     public Loan()
     {
 
-    }
-
-    public Loan(Long loanID, Book book, User user, LocalDate loanDate, LocalDate dueDate, LocalDate returnDate, LocalDate returned, BigDecimal fine, String notes, LocalDateTime createdAt) {
-        LoanID = loanID;
-        this.book = book;
-        this.user = user;
-        this.loanDate = loanDate;
-        this.dueDate = dueDate;
-        this.returnDate = returnDate;
-        this.returned = returned;
-        this.fine = fine;
-        this.notes = notes;
-        this.createdAt = createdAt;
     }
 
     public Long getLoanID() {

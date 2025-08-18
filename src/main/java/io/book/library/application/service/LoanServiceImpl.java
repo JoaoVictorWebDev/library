@@ -2,6 +2,7 @@ package io.book.library.application.service;
 
 import io.book.library.application.dto.LoanDTO;
 import io.book.library.application.mapper.LoanMapper;
+import io.book.library.application.service.interfaces.LoanService;
 import io.book.library.domain.entities.Loan;
 import io.book.library.domain.enums.BookStatus;
 import io.book.library.infrastructure.config.EntityNotFoundException;
@@ -37,10 +38,12 @@ public class LoanServiceImpl implements LoanService
     {
         return repository.findAll();
     }
+
     public Optional<Loan> findByID(Long id)
     {
         return Optional.ofNullable(repository.findById(id).orElse(null));
     }
+
     public LoanDTO updateByID(Long id, LoanDTO updateRequest)
     {
         Loan existingLoan = repository.findById(id).orElseThrow(() -> new EntityNotFoundException("Loan not found"));
@@ -57,11 +60,13 @@ public class LoanServiceImpl implements LoanService
     }
 
     private void applicationFine(Loan Loan) {
+
         if (Loan.getReturned() != null && Loan.getDueDate() != null && Loan.getReturned().isAfter(Loan.getDueDate())) {
             BigDecimal amount = new BigDecimal("2.50");
-            Long days = ChronoUnit.DAYS.between(Loan.getDueDate() , Loan.getReturnDate());
+            long days = ChronoUnit.DAYS.between(Loan.getDueDate() , Loan.getReturnDate());
             BigDecimal fine = amount.multiply(BigDecimal.valueOf(days));
         }
+
     }
 
 }

@@ -5,10 +5,13 @@ import io.book.library.domain.entities.Author;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
     AuthorDTO authorToDTO(Author author);
+    List<AuthorDTO> authorListToDTO(List<Author> author);
     void updateAuthorFromDTO(AuthorDTO authorDTO, @MappingTarget Author author);
 
 }

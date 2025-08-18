@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
 
 public class AuthorServiceImpl implements AuthorService {
 
@@ -46,22 +45,30 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     public AuthorDTO getAuthorById(Long authorId) {
-        return null;
+
+        if(!repository.existsById(authorId))
+            throw  new EntityNotFoundException("Author is null");
+        Author author = repository.findById(authorId).orElseThrow(() -> new EntityNotFoundException("User not Found"));
+        return authorMapper.authorToDTO(author);
     }
 
     public List<AuthorDTO> getAllAuthors() {
-        return List.of();
+        List<Author> author = repository.findAll();
+        return authorMapper.authorListToDTO(author);
     }
 
     public List<AuthorDTO> findAllAuthorsByNationality(String nationality) {
-        return List.of();
+        List<Author> authors = repository.findAllByNationality(nationality);
+        return authorMapper.authorListToDTO(authors);
     }
 
     public List<AuthorDTO> findAuthorsByBirthDate(LocalDate birthDate) {
-        return List.of();
+        List<Author> author = repository.findAuthorByBirthDate(birthDate);
+        return authorMapper.authorListToDTO(author);
     }
 
-    public List<AuthorDTO> searchAuthorsByName(String name) {
-        return List.of();
+    public List<AuthorDTO> searchAuthorsByName(String authorName) {
+        List<Author> authors = repository.findAuthorByName(authorName);
+        return authorMapper.authorListToDTO(authors);
     }
 }

@@ -26,6 +26,4 @@ public interface UserService {
     boolean activeOrDeactiveUserAccount();
 
     User verifiyUserAccount(User user);
-
-    User exportUserReport();
 }

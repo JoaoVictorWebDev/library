@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Table(name = "Category")
 public class Category
 {
+
     @Id
     @Column(name = "Category_ID")
     private Long categoryID;

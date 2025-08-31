@@ -1,4 +1,9 @@
 package io.book.library.application.service.interfaces;
 
-public class ReportService {
+
+import java.util.List;
+
+public interface ReportService {
+
+   void gerarRelatorioUsuarios(List<String> usuarios);
 }

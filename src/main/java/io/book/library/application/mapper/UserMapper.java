@@ -1,9 +1,9 @@
 package io.book.library.application.mapper;
 
-import io.book.library.application.dto.LoanDTO;
 import io.book.library.application.dto.UserDTO;
 import io.book.library.domain.entities.User;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
@@ -12,6 +12,9 @@ import java.util.List;
 
 public interface UserMapper {
     UserDTO userToDTO(User user);
+
     List<UserDTO> userListToDTO(List<User> user);
+
+    @Mapping(target = "id", ignore = true)
     void updateUserFromDTO(UserDTO userDTO, @MappingTarget User user);
 }

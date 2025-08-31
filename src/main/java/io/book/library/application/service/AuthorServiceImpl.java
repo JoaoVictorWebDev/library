@@ -7,10 +7,14 @@ import io.book.library.domain.entities.Author;
 import io.book.library.infrastructure.config.EntityNotFoundException;
 import io.book.library.infrastructure.repository.IAuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
@@ -18,12 +22,13 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private AuthorMapper authorMapper;
+
     @Autowired
 
     public AuthorDTO createAuthor(Author author) {
 
         Author authorSaved = repository.save(author);
-        return  authorMapper.authorToDTO(authorSaved);
+        return authorMapper.authorToDTO(authorSaved);
     }
 
     public AuthorDTO updateAuthor(Long authorID, AuthorDTO authorDTO) {
@@ -36,7 +41,7 @@ public class AuthorServiceImpl implements AuthorService {
 
     public void deleteAuthor(Long authorID) {
 
-        if( authorID == null){
+        if (authorID == null) {
             throw new IllegalStateException("Author cannot  be null!!");
         }
 
@@ -46,15 +51,15 @@ public class AuthorServiceImpl implements AuthorService {
 
     public AuthorDTO getAuthorById(Long authorId) {
 
-        if(!repository.existsById(authorId))
-            throw  new EntityNotFoundException("Author is null");
+        if (!repository.existsById(authorId))
+            throw new EntityNotFoundException("Author is null");
         Author author = repository.findById(authorId).orElseThrow(() -> new EntityNotFoundException("User not Found"));
         return authorMapper.authorToDTO(author);
     }
 
-    public List<AuthorDTO> getAllAuthors() {
-        List<Author> author = repository.findAll();
-        return authorMapper.authorListToDTO(author);
+    public Page<AuthorDTO> getAllAuthors(Pageable page) {
+        Page<Author> author = repository.findAll(page);
+        return author.map(authorMapper::authorToDTO);
     }
 
     public List<AuthorDTO> findAllAuthorsByNationality(String nationality) {

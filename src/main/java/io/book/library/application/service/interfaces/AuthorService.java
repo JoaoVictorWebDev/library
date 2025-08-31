@@ -2,6 +2,8 @@ package io.book.library.application.service.interfaces;
 
 import io.book.library.application.dto.AuthorDTO;
 import io.book.library.domain.entities.Author;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -16,7 +18,7 @@ public interface AuthorService {
 
     AuthorDTO getAuthorById(Long authorId);
 
-    List<AuthorDTO> getAllAuthors();
+    Page<AuthorDTO> getAllAuthors(Pageable page);
 
     List<AuthorDTO> findAllAuthorsByNationality(String nationality);
 

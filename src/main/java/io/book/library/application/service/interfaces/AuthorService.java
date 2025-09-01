@@ -24,6 +24,6 @@ public interface AuthorService {
 
     List<AuthorDTO> findAuthorsByBirthDate(LocalDate birthDate);
 
-    List<AuthorDTO> searchAuthorsByName(String name);
+    List<AuthorDTO> findAuthorsByName(String name);
 
 }

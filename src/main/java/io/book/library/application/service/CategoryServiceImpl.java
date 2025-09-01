@@ -3,11 +3,9 @@ package io.book.library.application.service;
 import io.book.library.application.dto.CategoryDTO;
 import io.book.library.application.mapper.CategoryMapper;
 import io.book.library.application.service.interfaces.CategoryService;
-import io.book.library.domain.entities.Author;
 import io.book.library.domain.entities.Category;
-import io.book.library.infrastructure.config.EntityNotFoundException;
+import io.book.library.infrastructure.config.exceptions.EntityNotFoundException;
 import io.book.library.infrastructure.repository.ICategoryRepository;
-import jakarta.persistence.criteria.CriteriaQuery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

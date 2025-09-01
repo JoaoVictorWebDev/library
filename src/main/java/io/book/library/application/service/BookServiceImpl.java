@@ -3,7 +3,7 @@ package io.book.library.application.service;
 import io.book.library.application.service.interfaces.BookService;
 import io.book.library.domain.entities.Book;
 import io.book.library.domain.enums.BookStatus;
-import io.book.library.infrastructure.config.IllegalStateException;
+import io.book.library.infrastructure.config.exceptions.IllegalStateException;
 import io.book.library.infrastructure.repository.IBookRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;

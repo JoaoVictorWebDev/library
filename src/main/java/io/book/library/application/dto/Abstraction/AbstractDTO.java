@@ -8,6 +8,9 @@ public abstract class AbstractDTO {
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
+    public AbstractDTO() {
+
+    }
 
     public AbstractDTO(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
@@ -25,6 +28,18 @@ public abstract class AbstractDTO {
 
     public LocalDateTime getUpdatedAt() {
         return updatedAt;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
 

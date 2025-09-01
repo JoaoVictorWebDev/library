@@ -1,33 +1,41 @@
 package io.book.library.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Author")
-public class Author
-{
+public class Author {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Author_ID")
     private Long authorID;
+
     @Column(name = "Author_name")
     private String authorName;
+
     @Column(name = "Author_nationality")
     private String nationality;
+
     @Column(name = "Author_biography")
     private String biography;
+
     @Column(name = "Author_photoUrl")
     private String photoUrl;
+
     private LocalDate birthDate;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books = new ArrayList<>();
 
     public Long getAuthorID() {
         return authorID;
@@ -83,5 +91,13 @@ public class Author
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
     }
 }

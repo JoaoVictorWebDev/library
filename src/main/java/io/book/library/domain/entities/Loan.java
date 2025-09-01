@@ -3,7 +3,6 @@ package io.book.library.domain.entities;
 import io.book.library.domain.enums.BookStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -11,8 +10,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Loan")
-public class Loan
-{
+public class Loan {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Loan_ID")
@@ -43,14 +41,14 @@ public class Loan
 
     @Column(name = "Notes")
     private String notes;
+    @Enumerated(EnumType.STRING)
     private BookStatus bookStatus;
 
     @Column(name = "Created_At")
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    public Loan()
-    {
+    public Loan() {
 
     }
 
@@ -69,7 +67,6 @@ public class Loan
     public void setBook(Book book) {
         this.book = book;
     }
-
 
 
     public User getUser() {

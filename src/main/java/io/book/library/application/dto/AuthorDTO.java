@@ -11,12 +11,23 @@ public class AuthorDTO extends AbstractDTO {
     private String biography;
     private String photoUrl;
 
-    public AuthorDTO(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
-        super(id, createdAt, updatedAt);
+    public AuthorDTO() {
+        super();
     }
 
+    public AuthorDTO(Long id, String authorName, String nationality,
+                     String biography, String photoUrl,
+                     LocalDateTime createdAt, LocalDateTime updatedAt) {
+        super(id, createdAt, updatedAt);
+        this.authorName = authorName;
+        this.nationality = nationality;
+        this.biography = biography;
+        this.photoUrl = photoUrl;
+    }
+
+
     public String getAuthorName() {
-        return authorName;
+        return authorName.trim();
     }
 
     public void setAuthorName(String authorName) {
@@ -24,7 +35,7 @@ public class AuthorDTO extends AbstractDTO {
     }
 
     public String getNationality() {
-        return nationality;
+        return nationality.trim();
     }
 
     public void setNationality(String nationality) {
@@ -32,7 +43,7 @@ public class AuthorDTO extends AbstractDTO {
     }
 
     public String getBiography() {
-        return biography;
+        return biography.trim();
     }
 
     public void setBiography(String biography) {
@@ -40,7 +51,7 @@ public class AuthorDTO extends AbstractDTO {
     }
 
     public String getPhotoUrl() {
-        return photoUrl;
+        return photoUrl.trim();
     }
 
     public void setPhotoUrl(String photoUrl) {

@@ -5,7 +5,7 @@ import io.book.library.application.mapper.LoanMapper;
 import io.book.library.application.service.interfaces.LoanService;
 import io.book.library.domain.entities.Loan;
 import io.book.library.domain.enums.BookStatus;
-import io.book.library.infrastructure.config.EntityNotFoundException;
+import io.book.library.infrastructure.config.exceptions.EntityNotFoundException;
 import io.book.library.infrastructure.repository.ILoanRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +17,7 @@ import java.util.Optional;
 
 @Service
 public class LoanServiceImpl implements LoanService {
+
     @Autowired
     private ILoanRepository repository;
 
@@ -28,9 +29,8 @@ public class LoanServiceImpl implements LoanService {
         return loanMapper.userToDTO(savedLoan);
     }
 
-    public LoanDTO deleteTransactionByID(Long transactionById) {
-        Loan savedLoan = repository.deleteTransactionByID(transactionById);
-        return loanMapper.userToDTO(savedLoan);
+    public void deleteTransactionByID(Long transactionById) {
+        repository.deleteById(transactionById);
     }
 
     public List<Loan> findAll() {

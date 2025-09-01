@@ -1,45 +1,51 @@
 package io.book.library.domain.entities;
 
-import io.book.library.domain.enums.BookStatus;
 import io.book.library.domain.enums.UserStatus;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.validator.constraints.br.CPF;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
-@Table(name = "User")
+@Table(name = "Users")
 @Entity
-public class User
-{
+public class User {
+
     @Id
-    @Column(name="User_Id")
+    @Column(name = "User_Id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long UserID;
+
     @Column(name = "User_Name")
     private String userName;
+
     @Column(name = "User_Cpf")
     @CPF
     private String CPF;
+
     @Column(name = "User_Address")
     private String userAddress;
+
     @Column(name = "User_Email")
     private String userEmail;
+
     @ManyToOne
     @JoinColumn(name = "Book_ID")
     private Book Book;
+
     @Enumerated
     @Column(name = "User_Status")
     private UserStatus userStatus;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
-    @OneToOne
-    @JoinColumn(name = "Loan_ID")
-    private List<Loan> loans;
 
-    public User()
-    {
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Loan> loans = new ArrayList<>();
+
+    public User() {
 
     }
 

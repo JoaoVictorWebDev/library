@@ -5,17 +5,22 @@ import io.book.library.domain.entities.Author;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 
+@Component
 @Mapper(componentModel = "spring")
 public interface AuthorMapper {
 
+    @Mapping(source = "authorID", target = "id")
     AuthorDTO authorToDTO(Author author);
+
+    @Mapping(source = "id", target = "authorID")
+    Author dtoToAuthor(AuthorDTO authorDTO);
 
     List<AuthorDTO> authorListToDTO(List<Author> author);
 
-    @Mapping(target = "id", ignore = true)
     void updateAuthorFromDTO(AuthorDTO authorDTO, @MappingTarget Author author);
 
 }

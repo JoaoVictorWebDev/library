@@ -10,7 +10,7 @@ public interface LoanService {
 
      LoanDTO createLoan(Loan Loan);
 
-     LoanDTO deleteTransactionByID(Long transactionById);
+     void deleteTransactionByID(Long transactionById);
 
      List<Loan> findAll();
 

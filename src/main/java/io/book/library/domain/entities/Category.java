@@ -1,26 +1,31 @@
 package io.book.library.domain.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "Category")
-public class Category
-{
+public class Category {
 
     @Id
     @Column(name = "Category_ID")
     private Long categoryID;
+
     @Column(name = "Category_name")
     private String categoryName;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
+
+    @CreationTimestamp
     private LocalDateTime updateAt;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Book> books = new ArrayList<>();
 
     public Long getCategoryID() {
         return categoryID;

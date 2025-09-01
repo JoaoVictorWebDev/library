@@ -11,6 +11,5 @@ public interface BookMapper {
 
     BookDTO bookToDTO(Book book);
 
-    @Mapping(target = "id", ignore = true)
     void updateBookFromDTO(BookDTO bookDTO, @MappingTarget Book book);
 }

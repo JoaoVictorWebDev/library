@@ -15,6 +15,5 @@ public interface UserMapper {
 
     List<UserDTO> userListToDTO(List<User> user);
 
-    @Mapping(target = "id", ignore = true)
     void updateUserFromDTO(UserDTO userDTO, @MappingTarget User user);
 }

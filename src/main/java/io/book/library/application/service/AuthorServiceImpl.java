@@ -4,12 +4,13 @@ import io.book.library.application.dto.AuthorDTO;
 import io.book.library.application.mapper.AuthorMapper;
 import io.book.library.application.service.interfaces.AuthorService;
 import io.book.library.domain.entities.Author;
-import io.book.library.infrastructure.config.EntityNotFoundException;
+import io.book.library.infrastructure.config.exceptions.EntityNotFoundException;
 import io.book.library.infrastructure.repository.IAuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -22,8 +23,6 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private AuthorMapper authorMapper;
-
-    @Autowired
 
     public AuthorDTO createAuthor(Author author) {
 
@@ -57,8 +56,9 @@ public class AuthorServiceImpl implements AuthorService {
         return authorMapper.authorToDTO(author);
     }
 
+    @Transactional(readOnly = true)
     public Page<AuthorDTO> getAllAuthors(Pageable page) {
-        Page<Author> author = repository.findAll(page);
+        Page<Author> author = repository.findAllAuthors(page);
         return author.map(authorMapper::authorToDTO);
     }
 
@@ -72,7 +72,7 @@ public class AuthorServiceImpl implements AuthorService {
         return authorMapper.authorListToDTO(author);
     }
 
-    public List<AuthorDTO> searchAuthorsByName(String authorName) {
+    public List<AuthorDTO> findAuthorsByName(String authorName) {
         List<Author> authors = repository.findAuthorByName(authorName);
         return authorMapper.authorListToDTO(authors);
     }

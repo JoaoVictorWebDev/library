@@ -11,6 +11,5 @@ public interface LoanMapper {
 
     LoanDTO userToDTO(Loan loan);
 
-    @Mapping(target = "id", ignore = true)
     void updateLoanFromDTO(LoanDTO loanDTO, @MappingTarget Loan loan);
 }

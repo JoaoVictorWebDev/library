@@ -9,36 +9,50 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "Book")
-public class Book
-{
+public class Book {
     @Id
     @Column(name = "Book_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long bookID;
+
     @Column(name = "Book_Name")
     private String bookName;
+
+    @ManyToOne
     @JoinColumn(name = "Author_ID")
     private Author author;
+
+    @ManyToOne
     @JoinColumn(name = "Category_ID")
     private Category category;
+
     @Column(name = "Book_Page")
     private Integer pages;
+
     @Column(name = "Book_Image")
     private String coverImageUrl;
+
     @Column(name = "Book_summary")
     private String summary;
+
+    @CreationTimestamp
     private LocalDate publishedDate;
+
+    @CreationTimestamp
     private LocalDate returnDate;
+
+    @CreationTimestamp
     private LocalDate dueDate;
+
     @CreationTimestamp
     private LocalDateTime createdAt;
+
     @CreationTimestamp
     private LocalDateTime updateAt;
+
     private BookStatus bookStatus;
 
-
-    public Book()
-    {
+    public Book() {
 
     }
 
@@ -162,4 +176,5 @@ public class Book
     public void setBookStatus(BookStatus bookStatus) {
         this.bookStatus = bookStatus;
     }
+
 }

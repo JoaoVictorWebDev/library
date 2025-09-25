@@ -55,7 +55,8 @@ public class UserServiceImpl implements UserService {
     public UserDTO assignBookToUser(Long userId, Long bookId) {
 
         User user = userRepository.findById(userId).orElseThrow(() -> new EntityNotFoundException("User not Found"));
-        Book book = bookService.markAsRented(bookId);
+        BookDTO bookDTO = bookService.markAsRented(bookId);
+        Book book = bookMapper.toEntity(bookDTO);
         user.setBook(book);
         userRepository.save(user);
         return userMapper.userToDTO(user);
@@ -80,7 +81,7 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findIdWithBook(userId)
                 .orElseThrow(() -> new EntityNotFoundException("User not found"));
 
-        if (user.getBook() == null || !user.getBook().getBookID().equals(bookId)) {
+        if (user.getBook() == null || !user.getBook().getId().equals(bookId)) {
             throw new IllegalStateException("That book wasn't rented by that user");
         }
 

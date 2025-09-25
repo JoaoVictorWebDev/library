@@ -3,7 +3,6 @@ package io.book.library.api;
 import io.book.library.application.dto.AuthorDTO;
 import io.book.library.application.service.interfaces.AuthorService;
 import io.book.library.domain.entities.Author;
-import io.book.library.infrastructure.repository.IAuthorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,9 +19,6 @@ public class AuthorController {
 
     @Autowired
     private AuthorService service;
-
-    @Autowired
-    private IAuthorRepository repository;
 
     @PostMapping("createAuthor")
     public ResponseEntity<AuthorDTO> createAuthor(@RequestBody Author author) {

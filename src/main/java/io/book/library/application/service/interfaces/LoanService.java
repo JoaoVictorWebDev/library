@@ -8,17 +8,17 @@ import java.util.Optional;
 
 public interface LoanService {
 
-     LoanDTO createLoan(Loan Loan);
+    public LoanDTO createLoan(Loan Loan);
 
-     void deleteTransactionByID(Long transactionById);
+    public void deleteTransactionByID(Long transactionById);
 
-     List<Loan> findAll();
+    public List<Loan> findAll();
 
-     Optional<Loan> findByID(Long id);
+    public Optional<Loan> findByID(Long id);
 
-     LoanDTO updateByID(Long id, LoanDTO updateRequest);
+    public LoanDTO updateByID(Long id, LoanDTO updateRequest);
 
-     void returnBook(Loan Loan);
+    public void returnBook(Loan Loan);
 
 
 }

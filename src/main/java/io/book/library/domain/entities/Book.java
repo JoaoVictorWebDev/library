@@ -13,7 +13,7 @@ public class Book {
     @Id
     @Column(name = "Book_ID")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long bookID;
+    private Long id;
 
     @Column(name = "Book_Name")
     private String bookName;
@@ -50,6 +50,7 @@ public class Book {
     @CreationTimestamp
     private LocalDateTime updateAt;
 
+    @Enumerated(EnumType.STRING)
     private BookStatus bookStatus;
 
     public Book() {
@@ -57,7 +58,7 @@ public class Book {
     }
 
     public Book(Long bookID, String bookName, Author author, Category category, Integer pages, String coverImageUrl, String summary, LocalDate publishedDate, LocalDateTime createdAt, LocalDateTime updateAt, LocalDate returnDate, LocalDate dueDate, BookStatus bookStatus) {
-        this.bookID = bookID;
+        this.id = bookID;
         this.bookName = bookName;
         this.author = author;
         this.category = category;
@@ -72,12 +73,12 @@ public class Book {
         this.bookStatus = bookStatus;
     }
 
-    public Long getBookID() {
-        return bookID;
+    public Long getId() {
+        return id;
     }
 
-    public void setBookID(Long bookID) {
-        this.bookID = bookID;
+    public void setId(Long id) {
+        this.id = id;
     }
 
 

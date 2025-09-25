@@ -19,12 +19,27 @@ public class BookDTO extends AbstractDTO {
     private LocalDate publishedDate;
     private LocalDate returnDate;
     private LocalDate dueDate;
-    private LocalDateTime createdAt;
-    private LocalDateTime updateAt;
     private BookStatus bookStatus;
 
-    public BookDTO(Long id, LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public BookDTO() {
+        super();
+    }
+
+    public BookDTO(Long id, LocalDateTime createdAt, LocalDateTime updatedAt,
+                   String bookName, Author author, Category category, Integer pages,
+                   String coverImageUrl, String summary, LocalDate publishedDate,
+                   LocalDate returnDate, LocalDate dueDate, BookStatus bookStatus) {
         super(id, createdAt, updatedAt);
+        this.bookName = bookName;
+        this.author = author;
+        this.category = category;
+        this.pages = pages;
+        this.coverImageUrl = coverImageUrl;
+        this.summary = summary;
+        this.publishedDate = publishedDate;
+        this.returnDate = returnDate;
+        this.dueDate = dueDate;
+        this.bookStatus = bookStatus;
     }
 
     public String getBookName() {
@@ -97,23 +112,6 @@ public class BookDTO extends AbstractDTO {
 
     public void setDueDate(LocalDate dueDate) {
         this.dueDate = dueDate;
-    }
-
-    @Override
-    public LocalDateTime getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(LocalDateTime createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdateAt() {
-        return updateAt;
-    }
-
-    public void setUpdateAt(LocalDateTime updateAt) {
-        this.updateAt = updateAt;
     }
 
     public BookStatus getBookStatus() {

@@ -34,7 +34,7 @@ public class Author {
     @CreationTimestamp
     private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "author", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Book> books = new ArrayList<>();
 
     public Long getAuthorID() {

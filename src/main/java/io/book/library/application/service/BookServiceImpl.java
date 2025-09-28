@@ -3,11 +3,13 @@ package io.book.library.application.service;
 import io.book.library.application.dto.BookDTO;
 import io.book.library.application.mapper.BookMapper;
 import io.book.library.application.service.interfaces.BookService;
+import io.book.library.domain.entities.Author;
 import io.book.library.domain.entities.Book;
 import io.book.library.domain.enums.BookStatus;
 import io.book.library.infrastructure.config.adapter.ZApiAdapter;
 import io.book.library.infrastructure.config.dto.SendMessageRequest;
 import io.book.library.infrastructure.config.exceptions.IllegalStateException;
+import io.book.library.infrastructure.repository.IAuthorRepository;
 import io.book.library.infrastructure.repository.IBookRepository;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,9 @@ public class BookServiceImpl implements BookService {
     private IBookRepository repository;
 
     @Autowired
+    private IAuthorRepository authorRepository;
+
+    @Autowired
     private BookMapper mapper;
 
     @Autowired
@@ -45,6 +50,8 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public BookDTO addBook(Book book, SendMessageRequest messageRequest) {
+        Author existingAuthor = authorRepository.findById(book.getAuthor().getAuthorID())
+                .orElseThrow(() -> new RuntimeException("Author not found"));
         Book bookSave = repository.save(book);
         adapter.sendMessage(messageRequest);
         return mapper.bookToDTO(bookSave);
@@ -92,9 +99,9 @@ public class BookServiceImpl implements BookService {
         return book.stream().map(mapper::bookToDTO).toList();
     }
 
-    @Override
-    public List<BookDTO> findBooksByAuthor(String author) {
-        List<Book> book = repository.findBooksByAuthor(author);
+    @Transactional
+    public List<BookDTO> findBooksByAuthor(Long authorId) {
+        List<Book> book = repository.findBooksByAuthor(authorId);
         return book.stream().map(mapper::bookToDTO).toList();
     }
 

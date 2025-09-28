@@ -19,7 +19,7 @@ public class Book {
     private String bookName;
 
     @ManyToOne
-    @JoinColumn(name = "Author_ID")
+    @JoinColumn(name = "author_id")
     private Author author;
 
     @ManyToOne

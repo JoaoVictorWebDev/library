@@ -17,8 +17,8 @@ public interface IBookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT bk FROM Book bk WHERE bk.bookName = :bookName ")
     Optional<Book> findBooksByTitle(@Param("bookName") String bookName);
 
-    @Query("SELECT bk FROM Book bk WHERE bk.author = :author ")
-    List<Book> findBooksByAuthor(@Param("author") String author);
+    @Query("SELECT bk FROM Book bk WHERE bk.author.id = :authorId ")
+    List<Book> findBooksByAuthor(@Param("authorId") Long authorId);
 
     @Query("SELECT bk from Book bk WHERE bk.category = :category")
     List<Book> findBooksByCategory(@Param("category") String category);

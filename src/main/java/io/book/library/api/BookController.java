@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,4 +63,21 @@ public class BookController {
         return new ResponseEntity<>(book, HttpStatus.OK);
     }
 
+    @GetMapping("/getBooksByAuthor/{authorId}")
+    public ResponseEntity<List<BookDTO>> getBooksByAuthor(@PathVariable Long authorId) {
+        List<BookDTO> book = service.findBooksByAuthor(authorId);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    @GetMapping("/getBooksByCategory/{categoryName}")
+    public ResponseEntity<List<BookDTO>> getBooksByCategory(@PathVariable String categoryName) {
+        List<BookDTO> book = service.findBooksByCategory(categoryName);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
+
+    @GetMapping("/getBooksByPublishedDate/{publishedDate}")
+    public ResponseEntity<List<BookDTO>> getBooksByPublishedDate(@PathVariable LocalDate publishedDate) {
+        List<BookDTO> book = service.findBooksByPublishedDate(publishedDate);
+        return new ResponseEntity<>(book, HttpStatus.OK);
+    }
 }

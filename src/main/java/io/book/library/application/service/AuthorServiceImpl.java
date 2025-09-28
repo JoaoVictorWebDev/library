@@ -1,11 +1,14 @@
 package io.book.library.application.service;
 
 import io.book.library.application.dto.AuthorDTO;
+import io.book.library.application.dto.BookDTO;
 import io.book.library.application.mapper.AuthorMapper;
 import io.book.library.application.service.interfaces.AuthorService;
 import io.book.library.domain.entities.Author;
+import io.book.library.domain.entities.Book;
 import io.book.library.infrastructure.config.exceptions.EntityNotFoundException;
 import io.book.library.infrastructure.repository.IAuthorRepository;
+import io.book.library.infrastructure.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,6 +26,9 @@ public class AuthorServiceImpl implements AuthorService {
 
     @Autowired
     private AuthorMapper authorMapper;
+
+    @Autowired
+    private IBookRepository bookRepository;
 
     public AuthorDTO createAuthor(Author author) {
 

@@ -27,7 +27,7 @@ public interface BookService {
 
     List<BookDTO> findBooksByTitle(String bookName);
 
-    List<BookDTO> findBooksByAuthor(String authorName);
+    List<BookDTO> findBooksByAuthor(Long authorId);
 
     List<BookDTO> findBooksByCategory(String categoryName);
 
